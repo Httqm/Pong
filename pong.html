@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<style type="text/css">
+			*									{font-family:terminal;}
+
+			button.pong							{font-weight:bold;}
+
+			td#left, td#right					{vertical-align:top;}
+
+			table#scores						{ width:75px;}
+			table#controls *, table#scores *	{ font-size:10pt; }
+			table#controls td					{ border:1px solid grey;}
+
+			table#controls td					{ color:white; font-weight:bold;}
+			table#controls .pong				{ width:25px;margin:2px 0;}
+
+			td.player, td#scorePlayer			{ color:red; }
+			td.computer, td#scoreComputer		{ color:blue; }
+			td.player, td.computer				{ text-align:left; }
+			td#scorePlayer, td#scoreComputer	{ font-size:40pt;text-align:right; }
+		</style>
+	</head>
+
+	<body style="background-color:black;">
+		<table border="0">
+			<tr>
+				<td id="left">
+					<table id="scores">
+						<tr><td class="player">Player</td></tr>
+						<tr><td id="scorePlayer">-</td></tr>
+						<tr><td class="computer">Computer</td></tr>
+						<tr><td id="scoreComputer">-</td></tr>
+					</table>
+
+
+					<table id="controls">
+						<tr>
+							<td colspan="2" style="text-align:center;"><button class="pong" id="playPause" onclick="objPongController.toggleRunning();">&gt;</button></td>
+						</tr>
+						<tr>
+							<td>speed</td>
+							<td>
+								<button class="pong" id="slower" title="Slower !" onclick="objPongController.changeSpeed(1);">-</button>
+								<button class="pong" id="faster" title="Faster !" onclick="objPongController.changeSpeed(-1);">+</button>
+								<input class="pong" id="speedometer" type="text" value="" readonly="readonly" />
+							</td>
+						</tr>
+						<tr>
+							<td>step</td>
+							<td>
+								<button class="pong" id="shorter" title="Shorter steps !" onclick="objPongController.changeStep(-1);">-</button>
+								<button class="pong" id="longer" title="Longer steps !" onclick="objPongController.changeStep(1);">+</button>
+								<input class="pong" id="stepLength" type="text" value="" readonly="readonly" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align:center;">
+								<select id="difficulty" onchange="objPongController.changeComputerViewField();objPongView.drawViewField();">
+									<option value="1">Very Easy</option>
+									<option value="2">Easy</option>
+									<option value="3">Medium</option>
+									<option value="4">Hard</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align:center;"><input type="checkbox" id="enableSound" onclick="objPongController.toggleSound();" /> Enable sound</td>
+						</tr>
+					</table>
+
+				</td>
+				<td id="right" rowspan="2" style="vertical-align:top;">
+					<canvas id="myCanvas" style="border:1px dashed white;"></canvas>
+				</td>
+			</tr>
+		</table>
+
+		<script type="text/javascript" src="pong.js"></script>
+	</body>
+</html>
